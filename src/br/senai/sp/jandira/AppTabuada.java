@@ -8,8 +8,8 @@ public class AppTabuada {
 		
 		FrameTabuada tela = new FrameTabuada();
 		tela.titulo = "Tabuada 1.0";
-		tela.largura = 600;
-		tela.altura = 700;
+		tela.largura = 430;
+		tela.altura = 600;
 		tela.criarTela();
 	}
 }

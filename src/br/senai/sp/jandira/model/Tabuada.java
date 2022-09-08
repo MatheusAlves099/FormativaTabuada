@@ -12,7 +12,7 @@ public class Tabuada {
 		String[] tabuada = new String[tamanho];
 		int i = 0;
 		
-		while(minMult < maxMult) {
+		while(minMult <= maxMult) {
 			
 		int produto = multiplicando * minMult;
 		
