@@ -74,6 +74,7 @@ public class FrameTabuada {
 	textFieldMult.setBounds(230, 150, 120, 25);
 	textFieldMult.setBorder(new LineBorder(Color.black));
 	textFieldMult.setFont(new Font("Trebuchet MS", Font.BOLD, 17));
+	textFieldMult.setHorizontalAlignment(textFieldMult.RIGHT);
 	
 	JLabel labelMinimoMult = new JLabel();
 	labelMinimoMult.setText("Mínimo Multiplicador: ");
@@ -84,6 +85,7 @@ public class FrameTabuada {
 	textFieldMinimoMult.setBounds(230, 190, 120, 25);
 	textFieldMinimoMult.setBorder(new LineBorder(Color.black));
 	textFieldMinimoMult.setFont(new Font("Trebuchet MS", Font.BOLD, 17));
+	textFieldMinimoMult.setHorizontalAlignment(textFieldMinimoMult.RIGHT);
 	
 	JLabel labelMaximoMult = new JLabel();
 	labelMaximoMult.setText("Máximo Multiplicador: ");
@@ -94,6 +96,7 @@ public class FrameTabuada {
 	textFieldMaximoMult.setBounds(230, 230, 120, 25);
 	textFieldMaximoMult.setBorder(new LineBorder(Color.black));
 	textFieldMaximoMult.setFont(new Font("Trebuchet MS", Font.BOLD, 17));
+	textFieldMaximoMult.setHorizontalAlignment(textFieldMaximoMult.RIGHT);
 	
 	JButton botaoCalcular = new JButton();
 	botaoCalcular.setText("Calcular");
@@ -146,25 +149,37 @@ public class FrameTabuada {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-		Tabuada tabuada = new Tabuada();
-		tabuada.multiplicando = Integer.parseInt(textFieldMult.getText());
-		tabuada.minMult = Integer.parseInt(textFieldMinimoMult.getText());
-		tabuada.maxMult = Integer.parseInt(textFieldMaximoMult.getText());
-
-		if(tabuada.minMult > tabuada.maxMult) {
-			JOptionPane.showInternalMessageDialog(null, "O mínimo multiplicador é maior que o máximo!!", "ERRO", 
-					JOptionPane.ERROR_MESSAGE);
-			textFieldMult.setText(null);
-			textFieldMinimoMult.setText(null);
-			textFieldMaximoMult.setText(null);
-		
-		} else 
-		
-		listLista1.setListData(tabuada.getTabuada());
-		scroll.getViewport().add(listLista1);
-		
+			
+			try {
+			
+				Tabuada tabuada = new Tabuada();
+				tabuada.multiplicando = Integer.parseInt(textFieldMult.getText());
+				tabuada.minMult = Integer.parseInt(textFieldMinimoMult.getText());			
+				tabuada.maxMult = Integer.parseInt(textFieldMaximoMult.getText());
+			
+				if (tabuada.minMult <= tabuada.maxMult) {
+					
+					listLista1.setListData(tabuada.getTabuada());
+					scroll.getViewport().add(listLista1);
+			
+				} else {
+					JOptionPane.showMessageDialog(null, "O mínimo multiplicador é maior que o máximo multiplicador!!", "Erro",JOptionPane.ERROR_MESSAGE, null);
+					textFieldMult.setText(null);
+					textFieldMinimoMult.setText(null);
+					textFieldMaximoMult.setText(null);
+						
+				}
+			
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, "Não é possível realizar o cálculo!!", "Erro",JOptionPane.ERROR_MESSAGE, null);
+				textFieldMult.setText(null);
+				textFieldMinimoMult.setText(null);
+				textFieldMaximoMult.setText(null);
+			
 			}
-		});
+			
+		}
+	});
 	
 		botaoLimpar.addActionListener(new ActionListener() {
 			
